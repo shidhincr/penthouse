@@ -42,7 +42,7 @@ var main = function () {
 
     options = parseArguments();
 
-    page.customHeaders = {'Host': options.host};
+    page.customHeaders = {'Host': options.host, 'n-locale': options.locale };
     
     try {
         var f = fs.open(options.cssFilePath, "r");
@@ -84,6 +84,7 @@ var parseArguments = function () {
     options.width = system.args[3] || 1300;
     options.height = system.args[4] || 900;
     options.host = system.args[5] || 'en-ae.namshi.com';
+    options.locale = system.args[6] || 'en_AE';
 
     return options;
 };

@@ -29,6 +29,7 @@ var log = function (msg) {
 //don't confuse analytics more than necessary when visiting websites
 page.settings.userAgent = 'Penthouse Critical Path CSS Generator';
 
+
 /* prevent page JS errors from being output to final CSS */
 page.onError = function (msg, trace) {
     //do nothing
@@ -41,6 +42,8 @@ var main = function () {
 
     options = parseArguments();
 
+    page.customHeaders = {'Host': options.host};
+    
     try {
         var f = fs.open(options.cssFilePath, "r");
         options.css = preFormatCSS(f.read());
@@ -80,6 +83,7 @@ var parseArguments = function () {
     options.cssFilePath = system.args[2];
     options.width = system.args[3] || 1300;
     options.height = system.args[4] || 900;
+    options.host = system.args[5] || 'en-ae.namshi.com';
 
     return options;
 };
